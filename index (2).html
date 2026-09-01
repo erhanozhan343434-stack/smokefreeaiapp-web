@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmokeFreeAI — Yapay Zeka Destekli Sigara Bırakma Asistanı</title>
+<style>
+  :root {
+    --primary: #0f9d6d;
+    --primary-dark: #0b7a53;
+    --bg: #f7faf9;
+    --text: #1a2b24;
+    --muted: #5c6b64;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  header {
+    background: #fff;
+    border-bottom: 1px solid #e6ece9;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo span.dot { color: var(--primary); }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  nav a:hover { color: var(--primary-dark); }
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--primary);
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+  .badge {
+    display: inline-block;
+    background: #e6f6ef;
+    color: var(--primary-dark);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 24px;
+  }
+  .feature-card {
+    background: #fff;
+    border: 1px solid #e6ece9;
+    border-radius: 16px;
+    padding: 28px 22px;
+  }
+  .feature-card .icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .feature-card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .section-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 40px;
+  }
+  .about {
+    background: #fff;
+    border-radius: 20px;
+    padding: 48px 40px;
+  }
+  .about h2 { font-size: 24px; margin-bottom: 16px; }
+  .about p { color: var(--muted); margin-bottom: 12px; }
+  .contact {
+    text-align: center;
+  }
+  .contact a.btn {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-weight: 700;
+    margin-top: 16px;
+  }
+  footer {
+    border-top: 1px solid #e6ece9;
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer a { color: var(--muted); }
+  footer .company {
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🚭<span class="dot">SmokeFree</span>AI</div>
+  <nav>
+    <a href="#ozellikler">Özellikler</a>
+    <a href="#hakkimizda">Hakkımızda</a>
+    <a href="#iletisim">İletişim</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="badge">Yakında Google Play ve App Store'da</div>
+  <h1>Yapay zeka koçuyla <em>sigarayı bırak</em>,<br>sağlığına kavuş.</h1>
+  <p>SmokeFreeAI, sigarayı bırakma sürecinde yanında olan yapay zeka destekli bir mobil uygulamadır. İlerlemeni takip et, kriz anlarında SOS desteği al, sağlığına kavuşma yolculuğunu adım adım izle.</p>
+</div>
+
+<section id="ozellikler">
+  <div class="section-title">Neler sunuyor?</div>
+  <div class="features">
+    <div class="feature-card">
+      <span class="icon">🤖</span>
+      <h3>Yapay Zeka Koçu</h3>
+      <p>Kriz anlarında SOS butonuyla anında yapay zeka destekli motivasyon ve rehberlik al.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">⏱️</span>
+      <h3>Canlı Sayaç</h3>
+      <p>Sigarasız geçirdiğin süreyi ve biriktirdiğin parayı anlık olarak takip et.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">❤️</span>
+      <h3>Sağlık Takibi</h3>
+      <p>Vücudunun iyileşme sürecini bilimsel verilerle görselleştiren sağlık zaman çizelgesi.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🏆</span>
+      <h3>Başarı Rozetleri</h3>
+      <p>Kilometre taşlarını kutla, motivasyonunu yüksek tut, ilerlemeni paylaş.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🔔</span>
+      <h3>Günlük Hatırlatmalar</h3>
+      <p>Kişiselleştirilmiş bildirimlerle yolculuğunda hiç yalnız kalma.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🔒</span>
+      <h3>Gizliliğe Saygılı</h3>
+      <p>Verilerin güvende — sadece senin sigarayı bırakma yolculuğun için kullanılır.</p>
+    </div>
+  </div>
+</section>
+
+<section id="hakkimizda">
+  <div class="about">
+    <h2>Hakkımızda</h2>
+    <p>SmokeFreeAI, insanların sigarayı bırakma yolculuğunda yapay zeka teknolojisinden gerçek, etik ve sürdürülebilir bir fayda sağlamasını amaçlayan bir mobil uygulama projesidir.</p>
+    <p>Uygulama, Lozi Kozmetik bünyesinde geliştirilmektedir.</p>
+  </div>
+</section>
+
+<section id="iletisim" class="contact">
+  <div class="section-title">İletişim</div>
+  <p>Sorularınız, geri bildirimleriniz ya da iş birliği talepleriniz için bize ulaşabilirsiniz.</p>
+  <a class="btn" href="mailto:erhanozhan343434@gmail.com">Bize Yazın</a>
+</section>
+
+<footer>
+  <div><a href="https://erhanozhan343434-stack.github.io/smokefreeai-privacy/">Gizlilik Politikası</a></div>
+  <div class="company">Lozi Kozmetik &middot; © 2026 SmokeFreeAI. Tüm hakları saklıdır.</div>
+</footer>
+
+</body>
+</html>
