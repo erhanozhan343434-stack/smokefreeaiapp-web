@@ -1,224 +1,467 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmokeFreeAI — Yapay Zeka Destekli Sigara Bırakma Asistanı</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmokeFreeAI – Sigarayı bırakma yolculuğunda yanındayım</title>
+<meta name="description" content="SmokeFreeAI ile sigarasız geçen süreni canlı takip et, biriktirdiğin parayı gör, canın sigara çektiğinde yapay zeka destekli yardımcına yaz. App Store'dan indir.">
+<meta property="og:title" content="SmokeFreeAI – Sigarayı bırakma yolculuğunda yanındayım">
+<meta property="og:description" content="Sigarasız geçen süreni ve biriktirdiğin parayı canlı takip et. Zorlandığın anda yardımcına yaz.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://smokefreeaiapp.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #0f9d6d;
-    --primary-dark: #0b7a53;
-    --bg: #f7faf9;
-    --text: #1a2b24;
-    --muted: #5c6b64;
+    --bg: #f2f7f6;
+    --bg-alt: #e6f0ee;
+    --ink: #0f2a2e;
+    --muted: #4c6669;
+    --accent: #1b8577;
+    --accent-dark: #146b5f;
+    --sun: #f0b25a;
+    --card: #ffffff;
+    --line: #d5e3e1;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c1e21;
+      --bg-alt: #10282c;
+      --ink: #eaf4f2;
+      --muted: #9db8b5;
+      --accent: #46c2b0;
+      --accent-dark: #6fd6c6;
+      --card: #12292d;
+      --line: #234247;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    line-height: 1.6;
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 18px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
-  header {
-    background: #fff;
-    border-bottom: 1px solid #e6ece9;
-    padding: 18px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header.top { padding: 22px 0; }
+  header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-decoration: none; }
+  .brand span { color: var(--accent); }
+  .top-link { font-size: 16px; text-decoration: none; color: var(--muted); }
+  .top-link:hover { color: var(--ink); }
+
+  /* App Store badge */
+  .store-badge {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #000; color: #fff; text-decoration: none;
+    padding: 9px 22px 9px 16px; border-radius: 12px;
+    border: 1px solid #a6a6a6;
+    transition: transform .15s ease;
   }
-  .logo {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--primary-dark);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .store-badge svg { width: 30px; height: 30px; fill: #fff; flex: none; }
+  .store-badge .t { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
+  .store-badge .t small { font-size: 12px; letter-spacing: 0.01em; }
+  .store-badge .t strong { font-family: var(--display); font-weight: 700; font-size: 25px; letter-spacing: -0.01em; }
+  .store-badge:hover { transform: translateY(-2px); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; padding: 40px 0 80px; }
+  h1 {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(38px, 6vw, 64px); line-height: 1.04; letter-spacing: -0.03em;
+    margin: 0 0 20px;
   }
-  .logo span.dot { color: var(--primary); }
-  nav a {
-    color: var(--muted);
-    text-decoration: none;
-    margin-left: 24px;
-    font-size: 15px;
-    font-weight: 500;
+  .lead { font-size: 20px; color: var(--muted); max-width: 30em; margin: 0 0 32px; }
+  .cta-note { margin: 14px 0 0; font-size: 15px; color: var(--muted); }
+
+  /* Phone mocks */
+  .phone {
+    background: var(--card); border: 1px solid var(--line); border-radius: 36px;
+    padding: 28px 24px 24px; box-shadow: 0 30px 60px -30px rgba(15, 42, 46, .35);
+    max-width: 340px; margin: 0 auto; width: 100%;
   }
-  nav a:hover { color: var(--primary-dark); }
-  .hero {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 80px 24px 60px;
-    text-align: center;
+  .phone .cap { font-size: 14px; color: var(--muted); margin: 0 0 6px; }
+  .clock { font-family: var(--display); font-weight: 800; font-size: 46px; line-height: 1; letter-spacing: -0.03em; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+  .clock-sub { font-family: var(--display); font-weight: 500; font-size: 22px; color: var(--accent-dark); margin: 0 0 22px; font-variant-numeric: tabular-nums; }
+  .stat { border-top: 1px solid var(--line); padding: 14px 0; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .stat span { color: var(--muted); font-size: 15px; }
+  .stat b { font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
+  .sos { margin-top: 10px; background: var(--accent); color: #fff; text-align: center; padding: 14px; border-radius: 14px; font-family: var(--display); font-weight: 700; font-size: 17px; }
+  .demo-tag { text-align: center; font-size: 13px; color: var(--muted); margin: 14px 0 0; }
+
+  /* Sections */
+  section.block { padding: 72px 0; border-top: 1px solid var(--line); }
+  section.alt { background: var(--bg-alt); }
+  h2 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 16px; max-width: 18em; }
+  .sub { color: var(--muted); max-width: 34em; margin: 0 0 40px; }
+
+  .feat-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .feat h3 { font-family: var(--display); font-size: 22px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .feat p { margin: 0; color: var(--muted); }
+
+  /* SOS split */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .chat { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 22px; max-width: 380px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 10px; }
+  .bubble { padding: 12px 16px; border-radius: 18px; font-size: 16px; line-height: 1.45; max-width: 88%; }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 6px; }
+  .bubble.ai { align-self: flex-start; background: var(--bg-alt); border-bottom-left-radius: 6px; }
+  .ticks { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+  .ticks li { padding-left: 30px; position: relative; }
+  .ticks li::before { content: ""; position: absolute; left: 0; top: 9px; width: 16px; height: 8px; border-left: 3px solid var(--accent); border-bottom: 3px solid var(--accent); transform: rotate(-45deg) scale(.85); }
+
+  /* Steps (real sequence) */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; counter-reset: s; list-style: none; padding: 0; margin: 0; }
+  .steps li { counter-increment: s; padding-top: 56px; position: relative; }
+  .steps li::before {
+    content: counter(s); position: absolute; top: 0; left: 0; width: 40px; height: 40px; border-radius: 50%;
+    background: var(--ink); color: var(--bg); font-family: var(--display); font-weight: 800; font-size: 20px;
+    display: grid; place-items: center;
   }
-  .hero h1 {
-    font-size: 42px;
-    font-weight: 800;
-    line-height: 1.25;
-    margin-bottom: 20px;
-    color: var(--text);
+  .steps h3 { font-family: var(--display); font-size: 21px; margin: 0 0 6px; }
+  .steps p { margin: 0; color: var(--muted); }
+
+  /* Milestones */
+  .mile { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 10px 18px; font-family: var(--display); font-weight: 700; font-size: 17px; }
+  .chip.done { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* Values */
+  .values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 48px; }
+  .values h3 { font-family: var(--display); font-size: 21px; margin: 0 0 6px; }
+  .values p { margin: 0; color: var(--muted); }
+
+  /* Free vs premium */
+  .plans { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 28px; }
+  .plan.pro { border: 2px solid var(--accent); }
+  .plan h3 { font-family: var(--display); font-size: 24px; margin: 0 0 4px; }
+  .plan .tag { color: var(--muted); font-size: 15px; margin: 0 0 16px; }
+  .plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .plan li { padding-left: 24px; position: relative; font-size: 17px; }
+  .plan li::before { content: "•"; position: absolute; left: 6px; color: var(--accent); font-weight: 800; }
+
+  /* Languages */
+  .langs { display: flex; flex-wrap: wrap; gap: 10px; }
+  .langs span { border: 1px solid var(--line); background: var(--card); padding: 8px 16px; border-radius: 10px; font-size: 16px; }
+
+  /* FAQ */
+  .faq { max-width: 760px; }
+  details { border-top: 1px solid var(--line); padding: 18px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 20px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 26px; line-height: 1; color: var(--accent); transition: transform .2s ease; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { margin: 12px 0 0; color: var(--muted); }
+
+  .final { text-align: left; }
+  .final h2 { max-width: 14em; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 100px; font-size: 15px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+  footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+  footer a { text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .note { font-size: 14px; width: 100%; margin: 6px 0 0; }
+
+  /* Mobile sticky bar */
+  .sticky { display: none; }
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding-bottom: 56px; }
+    .feat-list, .steps, .values, .plans, .split { grid-template-columns: 1fr; }
+    .split { gap: 36px; }
+    section.block { padding: 56px 0; }
+    .sticky {
+      display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+      background: var(--card); border-top: 1px solid var(--line);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .sticky b { font-family: var(--display); font-size: 17px; }
+    .sticky .store-badge { padding: 6px 16px 6px 12px; border-radius: 10px; }
+    .sticky .store-badge svg { width: 22px; height: 22px; }
+    .sticky .store-badge .t small { font-size: 10px; }
+    .sticky .store-badge .t strong { font-size: 18px; }
   }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--primary);
-  }
-  .hero p {
-    font-size: 18px;
-    color: var(--muted);
-    max-width: 600px;
-    margin: 0 auto 32px;
-  }
-  .badge {
-    display: inline-block;
-    background: #e6f6ef;
-    color: var(--primary-dark);
-    padding: 8px 18px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 24px;
-  }
-  section {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 60px 24px;
-  }
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 24px;
-  }
-  .feature-card {
-    background: #fff;
-    border: 1px solid #e6ece9;
-    border-radius: 16px;
-    padding: 28px 22px;
-  }
-  .feature-card .icon {
-    font-size: 28px;
-    margin-bottom: 14px;
-    display: block;
-  }
-  .feature-card h3 {
-    font-size: 17px;
-    margin-bottom: 8px;
-  }
-  .feature-card p {
-    font-size: 14px;
-    color: var(--muted);
-  }
-  .section-title {
-    text-align: center;
-    font-size: 30px;
-    font-weight: 800;
-    margin-bottom: 40px;
-  }
-  .about {
-    background: #fff;
-    border-radius: 20px;
-    padding: 48px 40px;
-  }
-  .about h2 { font-size: 24px; margin-bottom: 16px; }
-  .about p { color: var(--muted); margin-bottom: 12px; }
-  .contact {
-    text-align: center;
-  }
-  .contact a.btn {
-    display: inline-block;
-    background: var(--primary);
-    color: #fff;
-    text-decoration: none;
-    padding: 14px 32px;
-    border-radius: 999px;
-    font-weight: 700;
-    margin-top: 16px;
-  }
-  footer {
-    border-top: 1px solid #e6ece9;
-    padding: 32px 24px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 13px;
-  }
-  footer a { color: var(--muted); }
-  footer .company {
-    margin-top: 6px;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .store-badge, summary::after { transition: none; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">🚭<span class="dot">SmokeFree</span>AI</div>
-  <nav>
-    <a href="#ozellikler">Özellikler</a>
-    <a href="#hakkimizda">Hakkımızda</a>
-    <a href="#iletisim">İletişim</a>
-  </nav>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">SmokeFree<span>AI</span></a>
+    <a class="top-link" href="#sss">Sık sorulanlar</a>
+  </div>
 </header>
 
-<div class="hero">
-  <div class="badge">Yakında Google Play ve App Store'da</div>
-  <h1>Yapay zeka koçuyla <em>sigarayı bırak</em>,<br>sağlığına kavuş.</h1>
-  <p>SmokeFreeAI, sigarayı bırakma sürecinde yanında olan yapay zeka destekli bir mobil uygulamadır. İlerlemeni takip et, kriz anlarında SOS desteği al, sağlığına kavuşma yolculuğunu adım adım izle.</p>
-</div>
+<main>
+  <!-- HERO -->
+  <section class="wrap hero">
+    <div>
+      <h1>Sigarasız geçen her saniyeyi gör.</h1>
+      <p class="lead">SmokeFreeAI, bıraktığın andan beri geçen süreyi ve biriktirdiğin parayı canlı gösterir. Canın sigara çektiğinde tek dokunuşla yardımcına yazarsın.</p>
+      <a class="store-badge" href="https://apps.apple.com/tr/app/smokefreeai/id6807270031?l=tr" aria-label="SmokeFreeAI'yı App Store'dan indir">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        <span class="t"><small>İndir:</small><strong>App Store</strong></span>
+      </a>
+      <p class="cta-note">iPhone için. Temel sayaç ücretsiz, yıllık planda 3 gün ücretsiz deneme.</p>
+    </div>
 
-<section id="ozellikler">
-  <div class="section-title">Neler sunuyor?</div>
-  <div class="features">
-    <div class="feature-card">
-      <span class="icon">🤖</span>
-      <h3>Yapay Zeka Koçu</h3>
-      <p>Kriz anlarında SOS butonuyla anında yapay zeka destekli motivasyon ve rehberlik al.</p>
+    <div>
+      <div class="phone" aria-label="Uygulamadan örnek ekran">
+        <p class="cap">Sigarasız geçen süre</p>
+        <p class="clock" id="clock-main">40 gün</p>
+        <p class="clock-sub" id="clock-sub">00:00:00</p>
+        <div class="stat"><span>Sigara içilmedi</span><b id="stat-cig">0</b></div>
+        <div class="stat"><span>Biriken para</span><b id="stat-money">0 ₺</b></div>
+        <div class="sos">Şu an zorlanıyorum</div>
+      </div>
+      <p class="demo-tag">Örnek gösterim: günde 15 sigara, paket 100 ₺ varsayımıyla</p>
     </div>
-    <div class="feature-card">
-      <span class="icon">⏱️</span>
-      <h3>Canlı Sayaç</h3>
-      <p>Sigarasız geçirdiğin süreyi ve biriktirdiğin parayı anlık olarak takip et.</p>
-    </div>
-    <div class="feature-card">
-      <span class="icon">❤️</span>
-      <h3>Sağlık Takibi</h3>
-      <p>Vücudunun iyileşme sürecini bilimsel verilerle görselleştiren sağlık zaman çizelgesi.</p>
-    </div>
-    <div class="feature-card">
-      <span class="icon">🏆</span>
-      <h3>Başarı Rozetleri</h3>
-      <p>Kilometre taşlarını kutla, motivasyonunu yüksek tut, ilerlemeni paylaş.</p>
-    </div>
-    <div class="feature-card">
-      <span class="icon">🔔</span>
-      <h3>Günlük Hatırlatmalar</h3>
-      <p>Kişiselleştirilmiş bildirimlerle yolculuğunda hiç yalnız kalma.</p>
-    </div>
-    <div class="feature-card">
-      <span class="icon">🔒</span>
-      <h3>Gizliliğe Saygılı</h3>
-      <p>Verilerin güvende — sadece senin sigarayı bırakma yolculuğun için kullanılır.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="hakkimizda">
-  <div class="about">
-    <h2>Hakkımızda</h2>
-    <p>SmokeFreeAI, insanların sigarayı bırakma yolculuğunda yapay zeka teknolojisinden gerçek, etik ve sürdürülebilir bir fayda sağlamasını amaçlayan bir mobil uygulama projesidir.</p>
-    <p>Uygulama, Lozi Kozmetik bünyesinde geliştirilmektedir.</p>
-  </div>
-</section>
+  <!-- FEATURES -->
+  <section class="block">
+    <div class="wrap">
+      <h2>Bırakma sürecinde ihtiyacın olan üç şey</h2>
+      <p class="sub">Karmaşık ekranlar yok. Uygulamayı açtığında en önemli bilgi hemen karşında.</p>
+      <div class="feat-list">
+        <div class="feat">
+          <h3>Canlı sayaç</h3>
+          <p>Gün, saat, dakika ve saniye olarak sigarasız geçen süreni her açtığında görürsün.</p>
+        </div>
+        <div class="feat">
+          <h3>Biriken para</h3>
+          <p>Ne kadar içtiğini ve paket fiyatını girersin, uygulama cebinde kalan parayı hesaplar.</p>
+        </div>
+        <div class="feat">
+          <h3>Zorlandığında yardımcı</h3>
+          <p>Canın sigara çektiğinde tek dokunuşla yapay zeka destekli yardımcına yaz, o anı birlikte atlatın.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="iletisim" class="contact">
-  <div class="section-title">İletişim</div>
-  <p>Sorularınız, geri bildirimleriniz ya da iş birliği talepleriniz için bize ulaşabilirsiniz.</p>
-  <a class="btn" href="mailto:erhanozhan343434@gmail.com">Bize Yazın</a>
-</section>
+  <!-- SOS -->
+  <section class="block alt">
+    <div class="wrap split">
+      <div>
+        <h2>En zor anda yanında biri olsun.</h2>
+        <p class="sub" style="margin-bottom:0">Canın sigara çektiğinde alttaki "Şu an zorlanıyorum" butonuna dokun. Yardımcın seni dinler, o anı geçirmen için birlikte bir şeyler denersiniz.</p>
+        <ul class="ticks">
+          <li>Bırakma nedenine göre kişisel destek mesajları</li>
+          <li>Önceki konuşmalarını hatırlayan yardımcı</li>
+          <li>Kaydın sıfırlansa bile suçlamayan, yeniden başlamana yardım eden yaklaşım</li>
+        </ul>
+      </div>
+      <div class="chat" aria-label="Örnek sohbet">
+        <div class="bubble me">Canım çok sigara istiyor.</div>
+        <div class="bubble ai">Buradayım. Bu istek birkaç dakika içinde azalır. Şimdi bir bardak su alıp yavaşça içelim mi?</div>
+        <div class="bubble me">Tamam, aldım.</div>
+        <div class="bubble ai">Güzel. İlk günden bu yana çok yol geldin. Bir sonraki dakikayı birlikte geçirelim.</div>
+        <p class="demo-tag" style="margin:6px 0 0">Örnek sohbet</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="block">
+    <div class="wrap">
+      <h2>İki dakikada başla</h2>
+      <p class="sub">Hesap açman gerekmez. Üç soruya cevap ver, sayaç başlasın.</p>
+      <ol class="steps">
+        <li>
+          <h3>Bilgilerini gir</h3>
+          <p>Kaç yıldır içtiğini, günde kaç sigara içtiğini, paket fiyatını ve bırakma nedenini yaz.</p>
+        </li>
+        <li>
+          <h3>Bıraktığın anı seç</h3>
+          <p>Şu an, dün, geçen hafta ya da başka bir tarih. Sayaç o andan itibaren işler.</p>
+        </li>
+        <li>
+          <h3>Her gün takip et</h3>
+          <p>Sayacını, biriken parayı ve kilometre taşlarını izle. Zorlandığında yardımcına yaz.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- MILESTONES -->
+  <section class="block alt">
+    <div class="wrap">
+      <h2>Kilometre taşlarını kutla</h2>
+      <p class="sub">Her yeni gün bir başarı. Uygulama, sigarasız geçen sürene göre kilometre taşlarını ve rozetleri açar, paylaşabileceğin bir rozet ekranı sunar.</p>
+      <div class="mile" aria-label="Örnek kilometre taşları">
+        <span class="chip done">1 gün</span>
+        <span class="chip done">3 gün</span>
+        <span class="chip done">1 hafta</span>
+        <span class="chip">2 hafta</span>
+        <span class="chip">1 ay</span>
+        <span class="chip">3 ay</span>
+        <span class="chip">1 yıl</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="block">
+    <div class="wrap">
+      <h2>Seni zorlamayan bir uygulama</h2>
+      <div class="values" style="margin-top:32px">
+        <div>
+          <h3>Hesap gerekmez</h3>
+          <p>Uygulamayı e-posta ya da şifre olmadan kullanırsın.</p>
+        </div>
+        <div>
+          <h3>Yeniden başlamak sorun değil</h3>
+          <p>Bir gün içersen anlayışlı bir ekran karşılar. Nedenini işaretlersin, en iyi serin kaydedilir, devam edersin.</p>
+        </div>
+        <div>
+          <h3>Baskı yapan bildirim yok</h3>
+          <p>İstersen günlük hatırlatma alırsın. Bildirimleri ayarlardan istediğin zaman kapatırsın.</p>
+        </div>
+        <div>
+          <h3>Kendi dilinde</h3>
+          <div class="langs" style="margin-top:8px">
+            <span>Türkçe</span><span>English</span><span>Español</span><span>Deutsch</span><span>Français</span><span>العربية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE VS PREMIUM -->
+  <section class="block alt">
+    <div class="wrap">
+      <h2>Ücretsiz başla, istersen genişlet</h2>
+      <p class="sub">Temel sayaç her zaman ücretsiz kalır.</p>
+      <div class="plans">
+        <div class="plan">
+          <h3>Ücretsiz</h3>
+          <p class="tag">Sürekli ücretsiz</p>
+          <ul>
+            <li>Canlı sigarasız süre sayacı</li>
+            <li>Günde 1 yardımcı sohbeti</li>
+            <li>İlk 2 rozet</li>
+            <li>Acil destek kaynakları bağlantısı</li>
+          </ul>
+        </div>
+        <div class="plan pro">
+          <h3>Premium</h3>
+          <p class="tag">Haftalık, aylık veya yıllık abonelik. Yıllık planda 3 gün ücretsiz deneme.</p>
+          <ul>
+            <li>Sınırsız yardımcı sohbeti</li>
+            <li>Tüm kilometre taşları ve veriler</li>
+            <li>Tüm rozetler</li>
+            <li>Kişiselleştirilmiş destek mesajları</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="sss">
+    <div class="wrap">
+      <h2>Sık sorulanlar</h2>
+      <div class="faq" style="margin-top:32px">
+        <details>
+          <summary>SmokeFreeAI ücretsiz mi?</summary>
+          <p>Uygulamayı ücretsiz indirirsin. Sayaç ve günde bir yardımcı sohbeti ücretsizdir. Sınırsız sohbet ve tüm rozetler için Premium aboneliği vardır.</p>
+        </details>
+        <details>
+          <summary>Aboneliği nasıl iptal ederim?</summary>
+          <p>Abonelik App Store hesabın üzerinden yönetilir. iPhone'unda Ayarlar, üstte adın, Abonelikler yolundan istediğin zaman iptal edebilirsin.</p>
+        </details>
+        <details>
+          <summary>Hesap açmam gerekiyor mu?</summary>
+          <p>Hayır. E-posta veya şifre olmadan kullanırsın.</p>
+        </details>
+        <details>
+          <summary>Verilerim nasıl kullanılıyor?</summary>
+          <p>Ayrıntılar Gizlilik Politikamızda yazıyor. Sayfanın altındaki bağlantıdan okuyabilirsin.</p>
+        </details>
+        <details>
+          <summary>Yapay zeka yardımcısı doktor yerine geçer mi?</summary>
+          <p>Hayır. SmokeFreeAI tıbbi tavsiye ya da tedavi sunmaz. Bırakma sürecinde motivasyon ve destek amaçlıdır.</p>
+        </details>
+        <details>
+          <summary>Android sürümü var mı?</summary>
+          <p>Şu an iPhone için indirilebiliyor. Android sürümü üzerinde çalışıyoruz.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="block alt final">
+    <div class="wrap">
+      <h2>İlk gününü bugün başlat.</h2>
+      <p class="sub">Kurulum iki dakika sürer.</p>
+      <a class="store-badge" href="https://apps.apple.com/tr/app/smokefreeai/id6807270031?l=tr" aria-label="SmokeFreeAI'yı App Store'dan indir">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        <span class="t"><small>İndir:</small><strong>App Store</strong></span>
+      </a>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <div><a href="https://erhanozhan343434-stack.github.io/smokefreeai-privacy/">Gizlilik Politikası</a></div>
-  <div class="company">Lozi Kozmetik &middot; © 2026 SmokeFreeAI. Tüm hakları saklıdır.</div>
+  <div class="wrap">
+    <span>© 2026 SmokeFreeAI</span>
+    <nav>
+      <a href="/privacy">Gizlilik Politikası</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener">Kullanım Koşulları</a>
+    </nav>
+    <p class="note">SmokeFreeAI tıbbi tavsiye veya tedavi yerine geçmez. Apple ve App Store, Apple Inc.'in ticari markalarıdır.</p>
+  </div>
 </footer>
 
+<!-- Mobilde sabit indirme çubuğu -->
+<div class="sticky">
+  <b>SmokeFreeAI</b>
+  <a class="store-badge" href="https://apps.apple.com/tr/app/smokefreeai/id6807270031?l=tr" aria-label="SmokeFreeAI'yı App Store'dan indir">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+    <span class="t"><small>İndir:</small><strong>App Store</strong></span>
+  </a>
+</div>
+
+<script>
+  // Örnek sayaç: sayfa açıldığında 40 gün 0 saatten başlayıp canlı işler.
+  (function () {
+    var start = Date.now() - 40 * 24 * 3600 * 1000;
+    var perDay = 15, packPrice = 100, perPack = 20;
+    var clockMain = document.getElementById('clock-main');
+    var clockSub = document.getElementById('clock-sub');
+    var cig = document.getElementById('stat-cig');
+    var money = document.getElementById('stat-money');
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var s = Math.floor((Date.now() - start) / 1000);
+      var days = Math.floor(s / 86400);
+      var h = Math.floor((s % 86400) / 3600);
+      var m = Math.floor((s % 3600) / 60);
+      var sec = s % 60;
+      var daysFloat = (Date.now() - start) / 86400000;
+      var notSmoked = Math.floor(daysFloat * perDay);
+      var saved = Math.floor(notSmoked / perPack * packPrice);
+      clockMain.textContent = days + ' gün';
+      clockSub.textContent = pad(h) + ':' + pad(m) + ':' + pad(sec);
+      cig.textContent = notSmoked.toLocaleString('tr-TR');
+      money.textContent = saved.toLocaleString('tr-TR') + ' ₺';
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
 </body>
 </html>
