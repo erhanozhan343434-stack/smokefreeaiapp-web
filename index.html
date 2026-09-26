@@ -13,11 +13,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SmokeFreeAI – Sigarayı bırakma yolculuğunda yanındayım</title>
+<link rel="icon" type="image/png" href="uygulama-simgesi.png">
 <meta name="description" content="SmokeFreeAI ile sigarasız geçen süreni canlı takip et, biriktirdiğin parayı gör, canın sigara çektiğinde yapay zeka destekli yardımcına yaz. App Store'dan indir.">
 <meta property="og:title" content="SmokeFreeAI – Sigarayı bırakma yolculuğunda yanındayım">
 <meta property="og:description" content="Sigarasız geçen süreni ve biriktirdiğin parayı canlı takip et. Zorlandığın anda yardımcına yaz.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://smokefreeaiapp.com/">
+<meta property="og:image" content="https://smokefreeaiapp.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://smokefreeaiapp.com/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
@@ -60,7 +66,8 @@
 
   header.top { padding: 22px 0; }
   header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-  .brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-decoration: none; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+  .brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
   .brand span { color: var(--accent); }
   .top-link { font-size: 16px; text-decoration: none; color: var(--muted); }
   .top-link:hover { color: var(--ink); }
@@ -78,6 +85,32 @@
   .store-badge .t small { font-size: 12px; letter-spacing: 0.01em; }
   .store-badge .t strong { font-family: var(--display); font-weight: 700; font-size: 25px; letter-spacing: -0.01em; }
   .store-badge:hover { transform: translateY(-2px); }
+
+  /* Hero background band (forest photo) */
+  .hero-band {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('orman-kahramanı.jpg');
+    background-size: cover;
+    background-position: center 35%;
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .hero-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--bg) 55%, transparent) 0%,
+      var(--bg) 78%);
+    z-index: 0;
+  }
+  .hero-band > .wrap { position: relative; z-index: 1; }
 
   /* Hero */
   .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; padding: 40px 0 80px; }
@@ -103,6 +136,91 @@
   .stat b { font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
   .sos { margin-top: 10px; background: var(--accent); color: #fff; text-align: center; padding: 14px; border-radius: 14px; font-family: var(--display); font-weight: 700; font-size: 17px; }
   .demo-tag { text-align: center; font-size: 13px; color: var(--muted); margin: 14px 0 0; }
+
+  /* Feature icons */
+  .feat .icon {
+    width: 46px; height: 46px; border-radius: 13px;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .feat .icon svg { width: 24px; height: 24px; }
+
+  /* Trust band */
+  .trust-band {
+    display: flex; flex-wrap: wrap; gap: 14px 32px; justify-content: center;
+    margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--line);
+  }
+  .trust-item { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 16px; color: var(--ink); }
+  .trust-item .icon-sm {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: var(--bg-alt); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .trust-item .icon-sm svg { width: 18px; height: 18px; }
+
+  /* Lifestyle photo cards */
+  .photo-card {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 24px 48px -28px rgba(15, 42, 46, .4);
+    margin-top: 20px;
+  }
+  .photo-card img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+  .photo-caption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 20px 22px 18px;
+    background: linear-gradient(180deg, transparent, rgba(6, 20, 22, .78) 55%);
+    color: #fff;
+    font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -0.01em;
+  }
+
+  /* App-accurate phone mockup (dark, matches real app UI regardless of site theme) */
+  .phone.app-style {
+    background: #0a1719;
+    border: 1px solid rgba(255,255,255,0.07);
+    color: #eef5f3;
+  }
+  .ring-wrap {
+    position: relative;
+    width: 210px; height: 210px;
+    margin: 6px auto 26px;
+    border-radius: 50%;
+    background: conic-gradient(from -90deg, #2dd6b0 0% 57%, rgba(255,255,255,0.08) 57% 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ring-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 50%;
+    background: #0a1719;
+  }
+  .ring-center {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+  }
+  .ring-label { font-size: 12px; letter-spacing: 0.12em; color: #8fa8a4; font-weight: 700; }
+  .ring-days-row { display: flex; align-items: baseline; gap: 6px; margin-top: 6px; }
+  .ring-days { font-family: var(--display); font-weight: 800; font-size: 42px; letter-spacing: -0.02em; color: #fff; font-variant-numeric: tabular-nums; }
+  .ring-days-unit { font-size: 16px; color: #8fa8a4; font-weight: 600; }
+  .ring-time { margin-top: 4px; font-family: var(--display); font-weight: 600; font-size: 19px; color: #46e0c4; font-variant-numeric: tabular-nums; }
+
+  .app-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .app-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 14px 14px 12px;
+  }
+  .app-stat .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; }
+  .dot.green { background: #2dd6b0; }
+  .dot.blue { background: #38bdf8; }
+  .app-stat .lbl { font-size: 11px; letter-spacing: 0.06em; color: #8fa8a4; font-weight: 700; }
+  .app-stat b { display: block; margin-top: 8px; font-family: var(--display); font-weight: 800; font-size: 22px; color: #fff; font-variant-numeric: tabular-nums; }
+  .phone.app-style .sos { background: #2dd6b0; color: #04211c; }
 
   /* Sections */
   section.block { padding: 72px 0; border-top: 1px solid var(--line); }
@@ -207,13 +325,14 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="/">SmokeFree<span>AI</span></a>
+    <a class="brand" href="/"><img src="uygulama-simgesi.png" alt="SmokeFreeAI logosu">SmokeFree<span>AI</span></a>
     <a class="top-link" href="#sss">Sık sorulanlar</a>
   </div>
 </header>
 
 <main>
   <!-- HERO -->
+  <div class="hero-band">
   <section class="wrap hero">
     <div>
       <h1>Sigarasız geçen her saniyeyi gör.</h1>
@@ -226,17 +345,28 @@
     </div>
 
     <div>
-      <div class="phone" aria-label="Uygulamadan örnek ekran">
-        <p class="cap">Sigarasız geçen süre</p>
-        <p class="clock" id="clock-main">40 gün</p>
-        <p class="clock-sub" id="clock-sub">00:00:00</p>
-        <div class="stat"><span>Sigara içilmedi</span><b id="stat-cig">0</b></div>
-        <div class="stat"><span>Biriken para</span><b id="stat-money">0 ₺</b></div>
+      <div class="phone app-style" aria-label="Uygulamadan örnek ekran">
+        <div class="ring-wrap">
+          <div class="ring-center">
+            <span class="ring-label">SIGARASIZ</span>
+            <div class="ring-days-row"><span class="ring-days" id="clock-main">40</span><span class="ring-days-unit">gün</span></div>
+            <span class="ring-time" id="clock-sub">00:00:00</span>
+          </div>
+        </div>
+        <div class="app-stats-grid">
+          <div class="app-stat"><span class="lbl"><span class="dot green"></span>BİRİKEN PARA</span><b id="stat-money">0 ₺</b></div>
+          <div class="app-stat"><span class="lbl"><span class="dot blue"></span>İÇİLMEYEN</span><b id="stat-cig">0</b></div>
+        </div>
         <div class="sos">Şu an zorlanıyorum</div>
       </div>
-      <p class="demo-tag">Örnek gösterim: günde 15 sigara, paket 100 ₺ varsayımıyla</p>
+      <p class="demo-tag">Örnek gösterim: günde 11 sigara, paket 125 ₺ varsayımıyla</p>
+      <div class="photo-card">
+        <img src="koşucu.jpg" alt="Ormanda koşan bir kişi">
+        <div class="photo-caption">Nefes aldıkça daha da güçlen.</div>
+      </div>
     </div>
   </section>
+  </div>
 
   <!-- FEATURES -->
   <section class="block">
@@ -245,16 +375,37 @@
       <p class="sub">Karmaşık ekranlar yok. Uygulamayı açtığında en önemli bilgi hemen karşında.</p>
       <div class="feat-list">
         <div class="feat">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
           <h3>Canlı sayaç</h3>
           <p>Gün, saat, dakika ve saniye olarak sigarasız geçen süreni her açtığında görürsün.</p>
         </div>
         <div class="feat">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
           <h3>Biriken para</h3>
           <p>Ne kadar içtiğini ve paket fiyatını girersin, uygulama cebinde kalan parayı hesaplar.</p>
         </div>
         <div class="feat">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.9a5.5 5.5 0 00-7.8 0L12 5.9l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21.6l7.8-7.9 1-1a5.5 5.5 0 000-7.8z"/></svg></div>
           <h3>Zorlandığında yardımcı</h3>
           <p>Canın sigara çektiğinde tek dokunuşla yapay zeka destekli yardımcına yaz, o anı birlikte atlatın.</p>
+        </div>
+      </div>
+      <div class="trust-band">
+        <div class="trust-item">
+          <span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.9-5 4.9 1.2 6.9L12 17.7l-6 3.3 1.2-6.9-5-4.9 6.9-.9z"/></svg></span>
+          Ücretsiz indir
+        </div>
+        <div class="trust-item">
+          <span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+          Hesap gerekmez
+        </div>
+        <div class="trust-item">
+          <span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9S9.5 5.5 12 3z"/></svg></span>
+          6 dilde kullanılabilir
+        </div>
+        <div class="trust-item">
+          <span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a5 5 0 00-5 5c0 3 2 4 2 7h6c0-3 2-4 2-7a5 5 0 00-5-5z"/><path d="M10 19h4M11 22h2"/></svg></span>
+          Yapay zekâ destekli
         </div>
       </div>
     </div>
@@ -272,12 +423,18 @@
           <li>Kaydın sıfırlansa bile suçlamayan, yeniden başlamana yardım eden yaklaşım</li>
         </ul>
       </div>
-      <div class="chat" aria-label="Örnek sohbet">
+      <div>
+        <div class="photo-card" style="margin-top:0;">
+          <img src="özgürlük.jpg" alt="Kollarını açmış, derin nefes alan bir kişi">
+          <div class="photo-caption">Özgürlüğün tadını çıkar.</div>
+        </div>
+      <div class="chat" aria-label="Örnek sohbet" style="margin-top:20px;">
         <div class="bubble me">Canım çok sigara istiyor.</div>
         <div class="bubble ai">Buradayım. Bu istek birkaç dakika içinde azalır. Şimdi bir bardak su alıp yavaşça içelim mi?</div>
         <div class="bubble me">Tamam, aldım.</div>
         <div class="bubble ai">Güzel. İlk günden bu yana çok yol geldin. Bir sonraki dakikayı birlikte geçirelim.</div>
         <p class="demo-tag" style="margin:6px 0 0">Örnek sohbet</p>
+      </div>
       </div>
     </div>
   </section>
@@ -448,7 +605,7 @@
   // Örnek sayaç: sayfa açıldığında 40 gün 0 saatten başlayıp canlı işler.
   (function () {
     var start = Date.now() - 40 * 24 * 3600 * 1000;
-    var perDay = 15, packPrice = 100, perPack = 20;
+    var perDay = 10.75, packPrice = 125, perPack = 20;
     var clockMain = document.getElementById('clock-main');
     var clockSub = document.getElementById('clock-sub');
     var cig = document.getElementById('stat-cig');
@@ -463,7 +620,7 @@
       var daysFloat = (Date.now() - start) / 86400000;
       var notSmoked = Math.floor(daysFloat * perDay);
       var saved = Math.floor(notSmoked / perPack * packPrice);
-      clockMain.textContent = days + ' gün';
+      clockMain.textContent = days;
       clockSub.textContent = pad(h) + ':' + pad(m) + ':' + pad(sec);
       cig.textContent = notSmoked.toLocaleString('tr-TR');
       money.textContent = saved.toLocaleString('tr-TR') + ' ₺';
