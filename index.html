@@ -333,8 +333,77 @@
     .sticky { justify-content: center; gap: 10px; }
     .sticky .store-badge .t small { display: none; }
     .sticky .store-badge .t strong { font-size: 16px; }
-  }</style>
-<style>
+  /* Kullanıcı Yorumları Stilleri */
+.testimonials-section {
+  padding: 60px 20px;
+  background-color: #0b0f19;
+  color: #ffffff;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  color: #9ca3af;
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: #161c2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.rating {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.testimonial-text {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 12px;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #22c55e;
+  font-size: 0.90rem;
+}
+
+.user-badge {
+  color: #6b7280;
+  font-size: 0.80rem;
+  margin-top: 2px;
+}
+
 @media (max-width: 820px) {
   .hero > div:nth-child(2) { order: -1; }
   .hero { padding-top: 16px; gap: 24px; }
