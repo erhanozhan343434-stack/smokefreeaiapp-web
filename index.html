@@ -439,7 +439,7 @@
 .sf-calc-shell{max-width:900px;margin:0 auto;padding:clamp(20px,4vw,42px);border-radius:28px;background:#102b2a;color:#f0faf6;box-shadow:0 24px 65px rgba(4,28,24,.14)}
 .sf-calc-top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px}
 .sf-calc-eyebrow{display:block;color:#8ce7cb;font-size:12px;font-weight:800;letter-spacing:.12em;margin-bottom:8px}
-.sf-calc h2{font-size:clamp(28px,4vw,43px);max-width:none;margin:0;color:#fff}
+.sf-calc h1{font-size:clamp(28px,4vw,43px);max-width:none;margin:0;color:#fff}
 .sf-calc-icon{font-size:40px;line-height:1}
 .sf-calc-controls{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
 .sf-calc label{display:block;color:#e5f3ed;font-weight:700;font-size:16px;margin-bottom:12px}
@@ -473,6 +473,11 @@
 .sf-screen-copy h3{color:#fff;font-size:21px;margin:10px 0}
 .sf-screen-copy p{color:#c5d7d3;font-size:14px;line-height:1.6;margin:0}
 @media(max-width:760px){.sf-screen-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}.sf-screen-card{padding:22px}.sf-screen-device{width:min(100%,270px)}}
+
+/* Place the savings calculator and real screenshots at the top of the landing page. */
+.sf-calc{padding-top:46px;padding-bottom:48px}
+.sf-journey{padding-top:46px}
+@media(max-width:700px){.sf-calc{padding-top:24px;padding-bottom:32px}.sf-journey{padding-top:34px}}
 </style>
   <style>
 .pitch-band .store-badge, .final .store-badge { margin: 8px 6px !important; }
@@ -499,70 +504,13 @@
 </header>
 
 <main>
-  <!-- HERO -->
-  <div class="hero-band">
-  <section class="wrap hero">
-    <div>
-      <h1>Sigarasız geçen her saniyeyi gör.</h1>
-      <p class="lead">SmokeFreeAI, bıraktığın andan beri geçen süreyi ve biriktirdiğin parayı canlı gösterir. Canın sigara çektiğinde tek dokunuşla yardımcına yazarsın.</p>
-            <p class="pitch-line">Günde bir paket içiyorsan ayda 3.000 TL'den fazlası dumana gidiyor. SmokeFreeAI'nin aylık planı 499 TL.</p>
-      <a class="store-badge" href="https://apps.apple.com/tr/app/smokefreeai/id6807270031?l=tr" aria-label="SmokeFreeAI'yı App Store'dan indir" onclick="gtag('event', 'app_store_click', {'event_category':'engagement'});">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-        <span class="t"><small>İndir:</small><strong>App Store</strong></span>
-      </a>
-      <style>.hero .store-badge{margin:0 10px 10px 0}</style>
-<a class="store-badge play" href="https://play.google.com/store/apps/details?id=com.smokefreeai.mobile" aria-label="SmokeFreeAI'yı Google Play'den indir" onclick="gtag('event', 'play_store_click', {'event_category':'engagement'});">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00A0FF" d="M3.6 2.2L13.4 12 3.6 21.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"/><path fill="#00F076" d="M3.6 2.2c.2-.1.6-.1 1 .1l12 6.9-3.2 2.8z"/><path fill="#FFD500" d="M16.6 9.2l3.8 2.1c.8.5.8.9 0 1.4l-3.8 2.1-3.2-2.8z"/><path fill="#FF3A44" d="M13.4 12l3.2 2.8-12 6.9c-.4.2-.8.2-1 .1z"/></svg>
-  <span class="t"><small>İndir:</small><strong>Google Play</strong></span>
-</a>
-      <p class="cta-note">iPhone ve Android için. Yıllık planda 3 gün ücretsiz deneme.</p>
-    </div>
-
-    <div>
-      <img src="smokefree-reklam-gorseli-2.jpg" width="1080" height="1350" alt="SmokeFreeAI uygulaması: canın sigara çektiği an yalnız değilsin" style="display:block;width:100%;height:auto;max-width:420px;margin:0 auto;border-radius:28px;box-shadow:0 30px 60px -30px rgba(15,42,46,.45)">
-      <style>
-.img-badges{display:none}
-@media (max-width:820px){.img-badges{display:flex;justify-content:center;gap:10px;margin-top:16px}.img-badges .store-badge{margin:0}}
-</style>
-<div class="img-badges">
-<a class="store-badge" href="https://apps.apple.com/tr/app/smokefreeai/id6807270031?l=tr" aria-label="SmokeFreeAI'yı App Store'dan indir" onclick="gtag('event', 'app_store_click', {'event_category':'engagement'});">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-<span class="t"><small>İndir:</small><strong>App Store</strong></span>
-</a>
-<a class="store-badge play" href="https://play.google.com/store/apps/details?id=com.smokefreeai.mobile" aria-label="SmokeFreeAI'yı Google Play'den indir" onclick="gtag('event', 'play_store_click', {'event_category':'engagement'});">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00A0FF" d="M3.6 2.2L13.4 12 3.6 21.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"/><path fill="#00F076" d="M3.6 2.2c.2-.1.6-.1 1 .1l12 6.9-3.2 2.8z"/><path fill="#FFD500" d="M16.6 9.2l3.8 2.1c.8.5.8.9 0 1.4l-3.8 2.1-3.2-2.8z"/><path fill="#FF3A44" d="M13.4 12l3.2 2.8-12 6.9c-.4.2-.8.2-1 .1z"/></svg>
-<span class="t"><small>İndir:</small><strong>Google Play</strong></span>
-</a>
-</div>
-<div class="phone app-style" style="display:none" aria-label="Uygulamadan örnek ekran">
-        <div class="ring-wrap">
-          <div class="ring-center">
-            <span class="ring-label">SIGARASIZ</span>
-            <div class="ring-days-row"><span class="ring-days" id="clock-main">40</span><span class="ring-days-unit">gün</span></div>
-            <span class="ring-time" id="clock-sub">00:00:00</span>
-          </div>
-        </div>
-        <div class="app-stats-grid">
-          <div class="app-stat"><span class="lbl"><span class="dot green"></span>BİRİKEN PARA</span><b id="stat-money">0 ₺</b></div>
-          <div class="app-stat"><span class="lbl"><span class="dot blue"></span>İÇİLMEYEN</span><b id="stat-cig">0</b></div>
-        </div>
-        <div class="sos">Canım sigara istiyor</div>
-      </div> 
-      <div class="photo-card">
-        <img src="runner.jpg" alt="Ormanda koşan bir kişi">
-        <div class="photo-caption">Nefes aldıkça daha da güçlen.</div>
-      </div>
-    </div>
-  </section>
-  </div>
-
   <!-- Interactive savings calculator: assumptions and estimates are explicit. -->
 <section class="sf-calc" id="tasarruf-hesapla" aria-labelledby="sf-calc-title">
   <div class="wrap">
     <div class="sf-calc-shell">
       <div class="sf-calc-top">
         <div><span class="sf-calc-eyebrow">SİGARAYI BIRAKMANIN EKONOMİK TARAFI</span>
-          <h2 id="sf-calc-title">Sigaraya ne kadar harcıyorsun?</h2></div>
+          <h1 id="sf-calc-title">Sigaraya ne kadar harcıyorsun?</h1></div>
         <span class="sf-calc-icon" aria-hidden="true">🚭</span>
       </div>
       <div class="sf-calc-controls">
@@ -591,6 +539,33 @@
         <a class="sf-calc-cta" href="#indir" onclick="if(window.gtag)gtag('event','savings_calculator_cta_click',{event_category:'engagement'});">SmokeFreeAI ile Başla →</a>
       </div>
       <p class="sf-calc-note">Bu hesaplama tahminidir. Günlük tüketimin ve paket fiyatının sabit kaldığı, bırakınca sigaraya hiç harcama yapılmadığı varsayılır. Gerçek tasarruf farklı olabilir.</p>
+    </div>
+  </div>
+</section>
+  <section class="sf-journey" id="baslangic" aria-labelledby="sf-journey-title">
+  <div class="wrap">
+    <div class="sf-intro">
+      <span class="sf-eyebrow">UYGULAMAYI YAKINDAN TANI</span>
+      <h2 id="sf-journey-title">Sigarasız yaşamında her adımda yanında</h2>
+      <p>SmokeFreeAI'nin gerçek uygulama ekranlarını keşfet: sayacın, sağlık çizelgen ve AI Koç'un tek yerde.</p>
+    </div>
+    <div class="sf-journey-grid sf-screen-grid">
+      <article class="sf-screen-card">
+        <div class="sf-screen-device"><img src="smokefree-screen-home.jpg" loading="lazy" alt="SmokeFreeAI ana ekranı: sigarasız geçen süre, biriken para ve Canım sigara istiyor butonu" onerror="this.onerror=null;this.src='smokefree-reklam-gorseli-2.jpg'"></div>
+        <div class="sf-screen-copy"><span class="sf-screen-step">01 / ÖZET</span><h3>İlerlemeni her gün gör</h3><p>Sigarasız geçen süreni, biriken paranı ve içmediğin sigaraları takip et.</p></div>
+      </article>
+      <article class="sf-screen-card">
+        <div class="sf-screen-device"><img src="smokefree-screen-health.jpg" loading="lazy" alt="SmokeFreeAI sağlık iyileşme çizelgesi: sigarayı bırakma kilometre taşları" onerror="this.onerror=null;this.src='smokefree-reklam-gorseli-2.jpg'"></div>
+        <div class="sf-screen-copy"><span class="sf-screen-step">02 / SAĞLIK</span><h3>Sağlık kilometre taşları</h3><p>Sigarayı bıraktıktan sonraki genel iyileşme aşamalarını zaman çizelgesinde incele.</p></div>
+      </article>
+      <article class="sf-screen-card">
+        <div class="sf-screen-device"><img src="smokefree-screen-coach.jpg" loading="lazy" alt="SmokeFreeAI AI Koç ekranı: sigara isteğiyle başa çıkmaya yönelik örnek sohbet" onerror="this.onerror=null;this.src='smokefree-reklam-gorseli-2.jpg'"></div>
+        <div class="sf-screen-copy"><span class="sf-screen-step">03 / AI KOÇ</span><h3>Canın sigara istediğinde</h3><p>AI Koç ile konuş, seni tetikleyen durumlara uygun önerileri keşfet.</p></div>
+      </article>
+    </div>
+    <div class="sf-journey-action">
+      <a href="#indir" onclick="if(window.gtag)gtag('event','journey_cta_click',{event_category:'engagement'});">SmokeFreeAI'yi keşfet →</a>
+      <p>Görüntüler uygulamanın örnek ekranlarıdır. Sağlık kilometre taşları genel bilgilendirme amaçlıdır; tıbbi değerlendirme yerine geçmez.</p>
     </div>
   </div>
 </section>
@@ -794,33 +769,6 @@
     </div>
   </section>
 
-  <section class="sf-journey" id="baslangic" aria-labelledby="sf-journey-title">
-  <div class="wrap">
-    <div class="sf-intro">
-      <span class="sf-eyebrow">UYGULAMAYI YAKINDAN TANI</span>
-      <h2 id="sf-journey-title">Sigarasız yaşamında her adımda yanında</h2>
-      <p>SmokeFreeAI'nin gerçek uygulama ekranlarını keşfet: sayacın, sağlık çizelgen ve AI Koç'un tek yerde.</p>
-    </div>
-    <div class="sf-journey-grid sf-screen-grid">
-      <article class="sf-screen-card">
-        <div class="sf-screen-device"><img src="smokefree-screen-home.jpg" loading="lazy" alt="SmokeFreeAI ana ekranı: sigarasız geçen süre, biriken para ve Canım sigara istiyor butonu" onerror="this.onerror=null;this.src='smokefree-reklam-gorseli-2.jpg'"></div>
-        <div class="sf-screen-copy"><span class="sf-screen-step">01 / ÖZET</span><h3>İlerlemeni her gün gör</h3><p>Sigarasız geçen süreni, biriken paranı ve içmediğin sigaraları takip et.</p></div>
-      </article>
-      <article class="sf-screen-card">
-        <div class="sf-screen-device"><img src="smokefree-screen-health.jpg" loading="lazy" alt="SmokeFreeAI sağlık iyileşme çizelgesi: sigarayı bırakma kilometre taşları" onerror="this.onerror=null;this.src='smokefree-reklam-gorseli-2.jpg'"></div>
-        <div class="sf-screen-copy"><span class="sf-screen-step">02 / SAĞLIK</span><h3>Sağlık kilometre taşları</h3><p>Sigarayı bıraktıktan sonraki genel iyileşme aşamalarını zaman çizelgesinde incele.</p></div>
-      </article>
-      <article class="sf-screen-card">
-        <div class="sf-screen-device"><img src="smokefree-screen-coach.jpg" loading="lazy" alt="SmokeFreeAI AI Koç ekranı: sigara isteğiyle başa çıkmaya yönelik örnek sohbet" onerror="this.onerror=null;this.src='smokefree-reklam-gorseli-2.jpg'"></div>
-        <div class="sf-screen-copy"><span class="sf-screen-step">03 / AI KOÇ</span><h3>Canın sigara istediğinde</h3><p>AI Koç ile konuş, seni tetikleyen durumlara uygun önerileri keşfet.</p></div>
-      </article>
-    </div>
-    <div class="sf-journey-action">
-      <a href="#indir" onclick="if(window.gtag)gtag('event','journey_cta_click',{event_category:'engagement'});">SmokeFreeAI'yi keşfet →</a>
-      <p>Görüntüler uygulamanın örnek ekranlarıdır. Sağlık kilometre taşları genel bilgilendirme amaçlıdır; tıbbi değerlendirme yerine geçmez.</p>
-    </div>
-  </div>
-</section>
 <!-- FINAL CTA -->
   <section class="block alt final" id="indir">
     <div class="wrap">
