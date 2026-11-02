@@ -545,7 +545,45 @@
   </section>
   </div>
 
-  <!-- FEATURES -->
+  <!-- Interactive savings calculator: assumptions and estimates are explicit. -->
+<section class="sf-calc" id="tasarruf-hesapla" aria-labelledby="sf-calc-title">
+  <div class="wrap">
+    <div class="sf-calc-shell">
+      <div class="sf-calc-top">
+        <div><span class="sf-calc-eyebrow">SİGARAYI BIRAKMANIN EKONOMİK TARAFI</span>
+          <h2 id="sf-calc-title">Sigaraya ne kadar harcıyorsun?</h2></div>
+        <span class="sf-calc-icon" aria-hidden="true">🚭</span>
+      </div>
+      <div class="sf-calc-controls">
+        <div>
+          <div class="sf-calc-range-row"><label for="sf-cig-count">Günde kaç sigara içiyorsun?</label><output id="sf-cig-count-display" class="sf-calc-output" for="sf-cig-count">20 adet</output></div>
+          <input type="range" id="sf-cig-count" min="1" max="60" step="1" value="20" aria-describedby="sf-cig-count-help">
+          <div class="sf-calc-range-minmax" id="sf-cig-count-help"><span>1 adet</span><span>60 adet</span></div>
+        </div>
+        <div>
+          <label for="sf-pack-price">Bir paket sigara kaç TL?</label>
+          <input type="number" id="sf-pack-price" min="0" max="100000" step="1" value="110" inputmode="decimal" aria-describedby="sf-pack-price-help">
+          <p class="sf-calc-help" id="sf-pack-price-help">Bir pakette 20 sigara olduğu varsayılmıştır.</p>
+        </div>
+      </div>
+      <div class="sf-calc-results" aria-label="Tahmini sigara tasarrufu">
+        <h3>Sigarayı bırakırsan cebinde kalabilecek tahmini tutar</h3>
+        <div class="sf-calc-stats">
+          <div class="sf-calc-stat"><span>1 haftada</span><strong id="sf-save-week">770 TL</strong></div>
+          <div class="sf-calc-stat"><span>1 ayda (30 gün)</span><strong id="sf-save-month">3.300 TL</strong></div>
+          <div class="sf-calc-stat"><span>6 ayda (180 gün)</span><strong id="sf-save-six">19.800 TL</strong></div>
+          <div class="sf-calc-stat"><span>1 yılda (365 gün)</span><strong id="sf-save-year">40.150 TL</strong></div>
+        </div>
+      </div>
+      <div class="sf-calc-bottom">
+        <p>Her sigarasız gün, hem yeni bir başlangıç hem de bütçende fark yaratabilecek bir adım.</p>
+        <a class="sf-calc-cta" href="#indir" onclick="if(window.gtag)gtag('event','savings_calculator_cta_click',{event_category:'engagement'});">SmokeFreeAI ile Başla →</a>
+      </div>
+      <p class="sf-calc-note">Bu hesaplama tahminidir. Günlük tüketimin ve paket fiyatının sabit kaldığı, bırakınca sigaraya hiç harcama yapılmadığı varsayılır. Gerçek tasarruf farklı olabilir.</p>
+    </div>
+  </div>
+</section>
+<!-- FEATURES -->
     <section class="pitch-band">
     <div class="wrap">
       <p class="pitch-line">Temel sayaç ücretsiz. Önce dene, sonra karar ver.</p>
@@ -812,44 +850,6 @@
     <div class="sf-journey-action">
       <a href="#indir" onclick="if(window.gtag)gtag('event','journey_cta_click',{event_category:'engagement'});">SmokeFreeAI'yi keşfet →</a>
       <p>Fotoğraflar temsilidir; uygulama tıbbi tedavinin yerine geçmez.</p>
-    </div>
-  </div>
-</section>
-<!-- Interactive savings calculator: assumptions and estimates are explicit. -->
-<section class="sf-calc" id="tasarruf-hesapla" aria-labelledby="sf-calc-title">
-  <div class="wrap">
-    <div class="sf-calc-shell">
-      <div class="sf-calc-top">
-        <div><span class="sf-calc-eyebrow">SİGARAYI BIRAKMANIN EKONOMİK TARAFI</span>
-          <h2 id="sf-calc-title">Sigaraya ne kadar harcıyorsun?</h2></div>
-        <span class="sf-calc-icon" aria-hidden="true">🚭</span>
-      </div>
-      <div class="sf-calc-controls">
-        <div>
-          <div class="sf-calc-range-row"><label for="sf-cig-count">Günde kaç sigara içiyorsun?</label><output id="sf-cig-count-display" class="sf-calc-output" for="sf-cig-count">20 adet</output></div>
-          <input type="range" id="sf-cig-count" min="1" max="60" step="1" value="20" aria-describedby="sf-cig-count-help">
-          <div class="sf-calc-range-minmax" id="sf-cig-count-help"><span>1 adet</span><span>60 adet</span></div>
-        </div>
-        <div>
-          <label for="sf-pack-price">Bir paket sigara kaç TL?</label>
-          <input type="number" id="sf-pack-price" min="0" max="100000" step="1" value="110" inputmode="decimal" aria-describedby="sf-pack-price-help">
-          <p class="sf-calc-help" id="sf-pack-price-help">Bir pakette 20 sigara olduğu varsayılmıştır.</p>
-        </div>
-      </div>
-      <div class="sf-calc-results" aria-label="Tahmini sigara tasarrufu">
-        <h3>Sigarayı bırakırsan cebinde kalabilecek tahmini tutar</h3>
-        <div class="sf-calc-stats">
-          <div class="sf-calc-stat"><span>1 haftada</span><strong id="sf-save-week">770 TL</strong></div>
-          <div class="sf-calc-stat"><span>1 ayda (30 gün)</span><strong id="sf-save-month">3.300 TL</strong></div>
-          <div class="sf-calc-stat"><span>6 ayda (180 gün)</span><strong id="sf-save-six">19.800 TL</strong></div>
-          <div class="sf-calc-stat"><span>1 yılda (365 gün)</span><strong id="sf-save-year">40.150 TL</strong></div>
-        </div>
-      </div>
-      <div class="sf-calc-bottom">
-        <p>Her sigarasız gün, hem yeni bir başlangıç hem de bütçende fark yaratabilecek bir adım.</p>
-        <a class="sf-calc-cta" href="#indir" onclick="if(window.gtag)gtag('event','savings_calculator_cta_click',{event_category:'engagement'});">SmokeFreeAI ile Başla →</a>
-      </div>
-      <p class="sf-calc-note">Bu hesaplama tahminidir. Günlük tüketimin ve paket fiyatının sabit kaldığı, bırakınca sigaraya hiç harcama yapılmadığı varsayılır. Gerçek tasarruf farklı olabilir.</p>
     </div>
   </div>
 </section>
