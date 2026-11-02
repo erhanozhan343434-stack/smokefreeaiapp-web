@@ -478,6 +478,35 @@
 .sf-calc{padding-top:46px;padding-bottom:48px}
 .sf-journey{padding-top:46px}
 @media(max-width:700px){.sf-calc{padding-top:24px;padding-bottom:32px}.sf-journey{padding-top:34px}}
+
+/* Five-minute craving support: accessible, responsive and independent of the hero. */
+.sf-pause{padding:64px 0;background:#082522;color:#f4fffb}
+.sf-pause-layout{display:grid;grid-template-columns:1.06fr .94fr;gap:35px;align-items:center}
+.sf-pause-eyebrow{color:#83e7c1;letter-spacing:.12em;font-size:12px;font-weight:850}
+.sf-pause h2{font-size:clamp(30px,4vw,45px);line-height:1.15;margin:12px 0 16px;color:#fff}
+.sf-pause-intro>p{font-size:16px;line-height:1.7;color:#d1e6de}
+.sf-pause-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.sf-pause button{font:inherit;cursor:pointer;border:0;border-radius:12px;font-weight:800;padding:14px 18px}
+.sf-pause-primary{background:#72e0b0;color:#07332a}
+.sf-pause-primary:disabled{opacity:.6;cursor:default}
+.sf-pause-secondary{background:#1a4540;color:#e6fff5;border:1px solid #46756c!important}
+.sf-pause .sf-pause-tip{font-size:15px;color:#a8f2d6;min-height:48px}
+.sf-pause .sf-pause-disclaimer{font-size:12px;color:#b6cfc7}
+.sf-pause-panel{background:#113a35;border:1px solid #33645b;border-radius:25px;padding:24px;text-align:center}
+.sf-pause-ring{--progress:0%;width:205px;height:205px;margin:0 auto 15px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(closest-side,#113a35 89%,transparent 91%),conic-gradient(#79e8b5 var(--progress),#2e6258 0)}
+.sf-pause-clock{font-size:52px;font-weight:900;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#fff}
+.sf-pause-clock-label{font-size:10px;letter-spacing:.1em;font-weight:800;color:#bce7d5;max-width:145px}
+.sf-pause-status{font-size:15px;color:#dcf7ec;min-height:44px;margin:0 0 17px}
+.sf-pause-bottom{text-align:left;border-top:1px solid #38665b;padding-top:17px}
+.sf-pause-bottom label{display:block;font-weight:750;font-size:14px;margin-bottom:9px;color:#f3fff9}
+.sf-pause-bottom label small{font-weight:400;color:#c0d5ce}
+.sf-pause-quit-controls{display:flex;flex-wrap:wrap;gap:7px}
+.sf-pause-quit-controls input{flex:1;min-width:160px;max-width:100%;border-radius:9px;border:1px solid #6b9c8d;padding:10px;color:#172e2a;background:#fff;font:inherit}
+.sf-pause-quit-controls button{padding:10px 13px;background:#72e0b0;color:#06372d}
+.sf-pause-quit-controls .sf-pause-clear{background:#29574d;color:#fff}
+.sf-pause-note{font-size:12px;line-height:1.5;color:#c0d5ce;margin:9px 0}
+.sf-pause-elapsed{font-weight:750;color:#b4f6d7;margin:7px 0 0}
+@media(max-width:760px){.sf-pause{padding:46px 0}.sf-pause-layout{grid-template-columns:1fr;gap:22px}.sf-pause-panel{padding:20px}.sf-pause-ring{width:190px;height:190px}}
 </style>
   <style>
 .pitch-band .store-badge, .final .store-badge { margin: 8px 6px !important; }
@@ -622,6 +651,40 @@
     <div class="sf-journey-action">
       <a href="#indir" onclick="if(window.gtag)gtag('event','journey_cta_click',{event_category:'engagement'});">SmokeFreeAI'yi keşfet →</a>
       <p>Görüntüler uygulamanın örnek ekranlarıdır. Sağlık kilometre taşları genel bilgilendirme amaçlıdır; tıbbi değerlendirme yerine geçmez.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive five-minute craving support; private to this browser -->
+<section class="sf-pause" id="bes-dakika" aria-labelledby="sf-pause-title">
+  <div class="wrap sf-pause-layout">
+    <div class="sf-pause-intro">
+      <span class="sf-pause-eyebrow">CANIN SİGARA MI İSTİYOR?</span>
+      <h2 id="sf-pause-title">Önce 5 dakika kendine ver. 💚</h2>
+      <p>Sigara isteği geldiğinde hemen karar vermek zorunda değilsin. Birlikte beş dakikalık küçük bir mola verelim.</p>
+      <div class="sf-pause-actions">
+        <button type="button" id="sf-pause-start" class="sf-pause-primary">5 dakika dayan 🚭</button>
+        <button type="button" id="sf-pause-reset" class="sf-pause-secondary" hidden>Yeniden başlat</button>
+      </div>
+      <p class="sf-pause-tip" id="sf-pause-tip" aria-live="polite">Hazırsan başla. İstersen bir bardak su al ve rahat bir yere geç.</p>
+      <p class="sf-pause-disclaimer">Sigara isteği kişiden kişiye farklı sürer. Bu egzersiz tıbbi destek yerine geçmez.</p>
+    </div>
+    <div class="sf-pause-panel">
+      <div class="sf-pause-ring" id="sf-pause-ring" role="timer" aria-label="Beş dakikalık mola sayacı">
+        <span class="sf-pause-clock" id="sf-pause-clock" aria-live="off">05:00</span>
+        <span class="sf-pause-clock-label" id="sf-pause-clock-label">KENDİNE AYIRDIĞIN ZAMAN</span>
+      </div>
+      <p class="sf-pause-status" id="sf-pause-status" role="status" aria-live="polite">Bir sigara isteği, bir karar olmak zorunda değil.</p>
+      <div class="sf-pause-bottom">
+        <label for="sf-pause-quit">Son sigaranı ne zaman içtin? <small>(isteğe bağlı)</small></label>
+        <div class="sf-pause-quit-controls">
+          <input id="sf-pause-quit" type="datetime-local" aria-describedby="sf-pause-quit-note">
+          <button type="button" id="sf-pause-save">Kaydet</button>
+          <button type="button" id="sf-pause-clear" class="sf-pause-clear" hidden>Sil</button>
+        </div>
+        <p id="sf-pause-quit-note" class="sf-pause-note">Bilgi yalnızca bu tarayıcıda saklanır; uygulama hesabınla eşitlenmez.</p>
+        <p id="sf-pause-elapsed" class="sf-pause-elapsed" aria-live="polite"></p>
+      </div>
     </div>
   </div>
 </section>
@@ -927,6 +990,74 @@
   count.addEventListener('input',changed);
   price.addEventListener('input',changed);
   update();
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  var duration=300000, deadline=null, interval=null, lastMilestone=-1;
+  var start=document.getElementById('sf-pause-start'),reset=document.getElementById('sf-pause-reset');
+  var clock=document.getElementById('sf-pause-clock'),ring=document.getElementById('sf-pause-ring');
+  var label=document.getElementById('sf-pause-clock-label'),status=document.getElementById('sf-pause-status'),tip=document.getElementById('sf-pause-tip');
+  var quit=document.getElementById('sf-pause-quit'),save=document.getElementById('sf-pause-save');
+  var clear=document.getElementById('sf-pause-clear'),elapsed=document.getElementById('sf-pause-elapsed');
+  var tips=['Derin ve yavaş nefes al. Omuzlarını gevşet.','Bir bardak su içmeyi dene.','Yerinden kalkıp kısa bir yürüyüş yapabilirsin.','Bu isteği fark et; geçmesini beklerken kendine nazik davran.','Neredeyse tamam! Biraz daha kendine zaman tanı.'];
+  function track(name){if(typeof window.gtag==='function')window.gtag('event',name,{event_category:'engagement'});}
+  function render(){
+    if(!deadline)return;
+    var remaining=Math.max(0,deadline-Date.now()), seconds=Math.ceil(remaining/1000);
+    clock.textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');
+    ring.style.setProperty('--progress',((duration-remaining)/duration*100).toFixed(2)+'%');
+    var step=Math.min(4,Math.floor((duration-remaining)/60000));
+    if(step!==lastMilestone){lastMilestone=step;tip.textContent=tips[step];}
+    if(remaining===0){
+      window.clearInterval(interval);interval=null;deadline=null;
+      label.textContent='MOLA TAMAMLANDI';
+      status.textContent='Harika! Beş dakikayı kendine ayırdın. İstersen bir beş dakika daha devam et. 💚';
+      tip.textContent='Sigara içmediysen, bu isteği sigarasız atlattığın için kendini kutla!';
+      start.hidden=true;reset.hidden=false;track('five_minute_pause_completed');
+    }
+  }
+  start.addEventListener('click',function(){
+    if(interval)return;
+    deadline=Date.now()+duration;lastMilestone=-1;start.hidden=true;reset.hidden=false;
+    label.textContent='KALAN SÜRE';status.textContent='Şu an tek hedefin bu beş dakikayı geçirmek.';
+    render();interval=window.setInterval(render,250);track('five_minute_pause_started');
+  });
+  reset.addEventListener('click',function(){
+    if(interval)window.clearInterval(interval);interval=null;deadline=null;lastMilestone=-1;
+    clock.textContent='05:00';ring.style.setProperty('--progress','0%');
+    label.textContent='KENDİNE AYIRDIĞIN ZAMAN';status.textContent='Bir sigara isteği, bir karar olmak zorunda değil.';
+    tip.textContent='Hazırsan başla. İstersen bir bardak su al ve rahat bir yere geç.';
+    start.hidden=false;reset.hidden=true;track('five_minute_pause_reset');
+  });
+  function updateElapsed(){
+    var stored=null;try{stored=localStorage.getItem('sf-last-cigarette');}catch(e){}
+    var timestamp=stored===null?NaN:Number(stored);
+    if(!Number.isFinite(timestamp)||timestamp<=0||timestamp>Date.now()){
+      elapsed.textContent='';clear.hidden=true;return;
+    }
+    var mins=Math.floor((Date.now()-timestamp)/60000),days=Math.floor(mins/1440),hours=Math.floor((mins%1440)/60);
+    elapsed.textContent=days>0?'Son sigarandan beri '+days+' gün '+hours+' saat geçti.':hours>0?'Son sigarandan beri '+hours+' saat '+(mins%60)+' dakika geçti.':'Son sigarandan beri '+mins+' dakika geçti.';
+    clear.hidden=false;
+  }
+  try{
+    var stored=Number(localStorage.getItem('sf-last-cigarette'));
+    if(stored>0&&stored<=Date.now()){var d=new Date(stored);quit.value=new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);}
+  }catch(e){}
+  save.addEventListener('click',function(){
+    if(!quit.value){elapsed.textContent='Lütfen önce tarih ve saat seç.';return;}
+    var time=new Date(quit.value).getTime();
+    if(!Number.isFinite(time)||time>Date.now()||time<=0){elapsed.textContent='Geçmişteki geçerli bir tarih ve saat seç.';return;}
+    try{localStorage.setItem('sf-last-cigarette',String(time));updateElapsed();track('last_cigarette_saved');}
+    catch(e){elapsed.textContent='Tarayıcın bu bilgiyi saklamaya izin vermiyor.';}
+  });
+  clear.addEventListener('click',function(){
+    try{localStorage.removeItem('sf-last-cigarette');}catch(e){}
+    quit.value='';updateElapsed();track('last_cigarette_cleared');
+  });
+  updateElapsed();window.setInterval(updateElapsed,60000);
 })();
 </script>
 </body>
