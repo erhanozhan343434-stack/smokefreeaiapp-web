@@ -433,6 +433,35 @@
 .sf-journey-action a{display:inline-flex;justify-content:center;padding:13px 26px;border-radius:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:800}
 .sf-journey-action p{font-size:12px;color:var(--muted);margin-top:12px}
 @media(max-width:760px){.sf-journey{padding:52px 0}.sf-journey-grid{grid-template-columns:1fr}.sf-journey-card{min-height:300px}}
+
+/* Interactive smoking-cost calculator */
+.sf-calc{padding:78px 0;background:var(--bg);scroll-margin-top:24px}
+.sf-calc-shell{max-width:900px;margin:0 auto;padding:clamp(20px,4vw,42px);border-radius:28px;background:#102b2a;color:#f0faf6;box-shadow:0 24px 65px rgba(4,28,24,.14)}
+.sf-calc-top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px}
+.sf-calc-eyebrow{display:block;color:#8ce7cb;font-size:12px;font-weight:800;letter-spacing:.12em;margin-bottom:8px}
+.sf-calc h2{font-size:clamp(28px,4vw,43px);max-width:none;margin:0;color:#fff}
+.sf-calc-icon{font-size:40px;line-height:1}
+.sf-calc-controls{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.sf-calc label{display:block;color:#e5f3ed;font-weight:700;font-size:16px;margin-bottom:12px}
+.sf-calc input[type=range]{display:block;width:100%;accent-color:#72e6b4;cursor:pointer}
+.sf-calc-range-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.sf-calc-range-row label{margin:0}
+.sf-calc-output{color:#8cf0c5;font-weight:900;font-size:21px}
+.sf-calc .sf-calc-range-minmax{display:flex;justify-content:space-between;font-size:12px;color:#acc8be;margin-top:7px}
+.sf-calc input[type=number]{box-sizing:border-box;width:100%;padding:13px 15px;border-radius:11px;background:#1c423d;border:1px solid #52776c;color:#fff;font:inherit;font-size:19px;outline-offset:3px}
+.sf-calc input[type=number]:focus-visible,.sf-calc input[type=range]:focus-visible{outline:2px solid #8cf0c5}
+.sf-calc .sf-calc-help{font-size:12px;color:#b0c9c0;margin:7px 0 0}
+.sf-calc-results{border-top:1px solid #3b5d53;padding-top:22px}
+.sf-calc-results h3{font-size:17px;color:#eaf6ef;margin:0 0 16px}
+.sf-calc-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sf-calc-stat{padding:19px;border-radius:15px;background:#1b433b}
+.sf-calc-stat span{display:block;font-size:13px;color:#c0ded2;margin-bottom:7px}
+.sf-calc-stat strong{display:block;font-size:clamp(23px,3.3vw,35px);color:#8cf0c5;line-height:1.2;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.sf-calc-bottom{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-top:23px}
+.sf-calc-bottom p{max-width:420px;margin:0;color:#c2d9d0;font-size:13px;line-height:1.6}
+.sf-calc-cta{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;background:#76e5b6;color:#103126!important;text-decoration:none;border-radius:12px;font-weight:900;text-align:center}
+.sf-calc-note{font-size:12px;line-height:1.6;color:#b0c9c0;margin:15px 0 0}
+@media(max-width:700px){.sf-calc{padding:50px 0}.sf-calc-controls{grid-template-columns:1fr;gap:22px}.sf-calc-stat{padding:15px}.sf-calc-bottom{display:block}.sf-calc-cta{width:100%;box-sizing:border-box;margin-top:16px}.sf-calc-shell{border-radius:20px}}
 </style>
   <style>
 .pitch-band .store-badge, .final .store-badge { margin: 8px 6px !important; }
@@ -786,6 +815,44 @@
     </div>
   </div>
 </section>
+<!-- Interactive savings calculator: assumptions and estimates are explicit. -->
+<section class="sf-calc" id="tasarruf-hesapla" aria-labelledby="sf-calc-title">
+  <div class="wrap">
+    <div class="sf-calc-shell">
+      <div class="sf-calc-top">
+        <div><span class="sf-calc-eyebrow">SİGARAYI BIRAKMANIN EKONOMİK TARAFI</span>
+          <h2 id="sf-calc-title">Sigaraya ne kadar harcıyorsun?</h2></div>
+        <span class="sf-calc-icon" aria-hidden="true">🚭</span>
+      </div>
+      <div class="sf-calc-controls">
+        <div>
+          <div class="sf-calc-range-row"><label for="sf-cig-count">Günde kaç sigara içiyorsun?</label><output id="sf-cig-count-display" class="sf-calc-output" for="sf-cig-count">20 adet</output></div>
+          <input type="range" id="sf-cig-count" min="1" max="60" step="1" value="20" aria-describedby="sf-cig-count-help">
+          <div class="sf-calc-range-minmax" id="sf-cig-count-help"><span>1 adet</span><span>60 adet</span></div>
+        </div>
+        <div>
+          <label for="sf-pack-price">Bir paket sigara kaç TL?</label>
+          <input type="number" id="sf-pack-price" min="0" max="100000" step="1" value="110" inputmode="decimal" aria-describedby="sf-pack-price-help">
+          <p class="sf-calc-help" id="sf-pack-price-help">Bir pakette 20 sigara olduğu varsayılmıştır.</p>
+        </div>
+      </div>
+      <div class="sf-calc-results" aria-label="Tahmini sigara tasarrufu">
+        <h3>Sigarayı bırakırsan cebinde kalabilecek tahmini tutar</h3>
+        <div class="sf-calc-stats">
+          <div class="sf-calc-stat"><span>1 haftada</span><strong id="sf-save-week">770 TL</strong></div>
+          <div class="sf-calc-stat"><span>1 ayda (30 gün)</span><strong id="sf-save-month">3.300 TL</strong></div>
+          <div class="sf-calc-stat"><span>6 ayda (180 gün)</span><strong id="sf-save-six">19.800 TL</strong></div>
+          <div class="sf-calc-stat"><span>1 yılda (365 gün)</span><strong id="sf-save-year">40.150 TL</strong></div>
+        </div>
+      </div>
+      <div class="sf-calc-bottom">
+        <p>Her sigarasız gün, hem yeni bir başlangıç hem de bütçende fark yaratabilecek bir adım.</p>
+        <a class="sf-calc-cta" href="#indir" onclick="if(window.gtag)gtag('event','savings_calculator_cta_click',{event_category:'engagement'});">SmokeFreeAI ile Başla →</a>
+      </div>
+      <p class="sf-calc-note">Bu hesaplama tahminidir. Günlük tüketimin ve paket fiyatının sabit kaldığı, bırakınca sigaraya hiç harcama yapılmadığı varsayılır. Gerçek tasarruf farklı olabilir.</p>
+    </div>
+  </div>
+</section>
 <!-- FINAL CTA -->
   <section class="block alt final" id="indir">
     <div class="wrap">
@@ -854,6 +921,41 @@
     tick();
     setInterval(tick, 1000);
   })();
+</script>
+<script>
+(function(){
+  var count=document.getElementById('sf-cig-count');
+  var price=document.getElementById('sf-pack-price');
+  if(!count||!price)return;
+  var display=document.getElementById('sf-cig-count-display');
+  var targets=[['sf-save-week',7],['sf-save-month',30],['sf-save-six',180],['sf-save-year',365]];
+  var formatter=new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0});
+  var tracked=false;
+  function update(){
+    var cigarettes=Number(count.value);
+    var packPrice=Number(price.value);
+    if(!Number.isFinite(cigarettes))cigarettes=0;
+    if(!Number.isFinite(packPrice))packPrice=0;
+    cigarettes=Math.min(60,Math.max(0,cigarettes));
+    packPrice=Math.min(100000,Math.max(0,packPrice));
+    display.textContent=cigarettes+' adet';
+    var daily=cigarettes*packPrice/20;
+    targets.forEach(function(pair){
+      var element=document.getElementById(pair[0]);
+      if(element)element.textContent=formatter.format(Math.round(daily*pair[1]))+' TL';
+    });
+  }
+  function changed(){
+    update();
+    if(!tracked&&typeof window.gtag==='function'){
+      tracked=true;
+      window.gtag('event','savings_calculator_interaction',{event_category:'engagement'});
+    }
+  }
+  count.addEventListener('input',changed);
+  price.addEventListener('input',changed);
+  update();
+})();
 </script>
 </body>
 </html>
