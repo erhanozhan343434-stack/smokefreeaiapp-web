@@ -409,6 +409,30 @@
   .hero { padding-top: 16px; gap: 24px; }
   .hero > div:first-child .store-badge { display: none; }
 }
+
+/* Device-aware store links: mobile sees only the matching store, desktop sees both. */
+@media(max-width:820px){
+  html[data-store-platform="ios"] a.store-badge.play{display:none!important}
+  html[data-store-platform="android"] a.store-badge:not(.play){display:none!important}
+  .sticky{gap:10px}
+}
+.sf-journey{padding:76px 0;background:var(--bg-alt)}
+.sf-journey .sf-intro{text-align:center;max-width:700px;margin:0 auto 30px}
+.sf-journey .sf-eyebrow{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
+.sf-journey h2{max-width:none;margin:12px 0;font-size:clamp(30px,4vw,46px)}
+.sf-journey .sf-intro p{color:var(--muted);font-size:17px}
+.sf-journey-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.sf-journey-card{position:relative;min-height:350px;overflow:hidden;border-radius:22px;background:#122b2b;isolation:isolate}
+.sf-journey-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sf-journey-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,23,23,.06) 20%,rgba(4,23,23,.95) 100%);z-index:1}
+.sf-journey-card .sf-number{position:absolute;top:17px;left:17px;z-index:2;background:#46c2b0;color:#062a27;font-weight:900;width:40px;height:40px;display:grid;place-items:center;border-radius:50%}
+.sf-journey-card .sf-copy{position:absolute;bottom:0;left:0;right:0;padding:24px;z-index:2}
+.sf-journey-card h3{font-size:23px;font-weight:800;margin:0 0 7px;color:#fff}
+.sf-journey-card p{font-size:15px;line-height:1.5;color:#e0eeec;margin:0}
+.sf-journey-action{text-align:center;margin-top:25px}
+.sf-journey-action a{display:inline-flex;justify-content:center;padding:13px 26px;border-radius:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:800}
+.sf-journey-action p{font-size:12px;color:var(--muted);margin-top:12px}
+@media(max-width:760px){.sf-journey{padding:52px 0}.sf-journey-grid{grid-template-columns:1fr}.sf-journey-card{min-height:300px}}
 </style>
   <style>
 .pitch-band .store-badge, .final .store-badge { margin: 8px 6px !important; }
@@ -416,6 +440,14 @@
 .pitch-line { line-height: 1.5; }
 .hero .pitch-line { margin: 28px 0 22px; }
 </style>
+<script>
+(function(){
+  var ua=navigator.userAgent||'';
+  var platform=/iPad|iPhone|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)?'ios':/Android/i.test(ua)?'android':'other';
+  document.documentElement.setAttribute('data-store-platform',platform);
+  if(window.gtag)gtag('event','store_platform_detected',{event_category:'engagement',platform:platform});
+})();
+</script>
 </head>
 <body>
 
@@ -724,8 +756,38 @@
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="block alt final">
+  <section class="sf-journey" id="baslangic" aria-labelledby="sf-journey-title">
+  <div class="wrap">
+    <div class="sf-intro">
+      <span class="sf-eyebrow">Sigarasız yaşamın 3 adımı</span>
+      <h2 id="sf-journey-title">Bugün başla. Her gün ilerle.</h2>
+      <p>SmokeFreeAI, sigarayı bırakma sürecinde motivasyonunu ve ilerlemeni takip etmene yardımcı olur.</p>
+    </div>
+    <div class="sf-journey-grid">
+      <article class="sf-journey-card">
+        <img src="freedom.jpg" loading="lazy" alt="Özgürlük ve yeni başlangıç temalı fotoğraf">
+        <span class="sf-number" aria-hidden="true">1</span>
+        <div class="sf-copy"><h3>Bugün başla</h3><p>Sigarasız geçen süreyi takip ederek ilk adımını görünür kıl.</p></div>
+      </article>
+      <article class="sf-journey-card">
+        <img src="ana-ekran.jpg" loading="lazy" alt="SmokeFreeAI uygulama ana ekranı">
+        <span class="sf-number" aria-hidden="true">2</span>
+        <div class="sf-copy"><h3>İlerlemeni gör</h3><p>İçilmediği hesaplanan sigaraları ve tahmini para tasarrufunu incele.</p></div>
+      </article>
+      <article class="sf-journey-card">
+        <img src="runner.jpg" loading="lazy" alt="Doğada koşu yapan kişi">
+        <span class="sf-number" aria-hidden="true">3</span>
+        <div class="sf-copy"><h3>Destek al</h3><p>Zorlandığında yapay zekâ asistanına yaz; hedefini hatırla.</p></div>
+      </article>
+    </div>
+    <div class="sf-journey-action">
+      <a href="#indir" onclick="if(window.gtag)gtag('event','journey_cta_click',{event_category:'engagement'});">SmokeFreeAI'yi keşfet →</a>
+      <p>Fotoğraflar temsilidir; uygulama tıbbi tedavinin yerine geçmez.</p>
+    </div>
+  </div>
+</section>
+<!-- FINAL CTA -->
+  <section class="block alt final" id="indir">
     <div class="wrap">
       <h2>İlk gününü bugün başlat.</h2>
       <p class="sub">Kurulum iki dakika sürer.</p>
@@ -795,50 +857,3 @@
 </script>
 </body>
 </html>
-<!-- Yorumlar Bölümü -->
-<section class="testimonials-section">
-  <div class="container">
-    <h2 class="section-title">Kullanıcılarımız Ne Diyor?</h2>
-    <p class="section-subtitle">SmokeFreeAI ile sigarasız bir yaşama adım atanların deneyimleri.</p>
-    
-    <div class="testimonials-grid">
-      
-      <div class="testimonial-card">
-        <div class="rating">⭐⭐⭐⭐⭐</div>
-        <p class="testimonial-text">"En çok zorlandığım anlar canımın aniden sigara istediği kriz anlarıydı. Kırmızı 'Canım sigara istiyor' butonuna basıp AI yardımcısıyla sohbet etmek o 3-4 dakikalık krizi atlatmamı sağladı. Şu an 24. gündeyim!"</p>
-        <div class="user-info">
-          <span class="user-name">Mert K.</span>
-          <span class="user-badge">App Store • 24 Gün Sigarasız</span>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="rating">⭐⭐⭐⭐⭐</div>
-        <p class="testimonial-text">"Günde bir paket içiyordum. Uygulamayı açıp biriken paranın 3.000 ₺'yi geçtiğini görmek inanılmaz bir motivasyon kaynağı oldu. Biriken parayla kendime kulaklık aldım!"</p>
-        <div class="user-info">
-          <span class="user-name">Selin A.</span>
-          <span class="user-badge">Google Play • 35 Gün Sigarasız</span>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="rating">⭐⭐⭐⭐⭐</div>
-        <p class="testimonial-text">"Daha önce defalarca bırakmayı denedim ama pes ediyordum. Bu uygulamada seni yargılamayan, yeniden başladığında motive eden bir yaklaşım var. Bırakma nedenlerimi hatırlatması çok yardımcı oldu."</p>
-        <div class="user-info">
-          <span class="user-name">Emre B.</span>
-          <span class="user-badge">App Store • 14 Gün Sigarasız</span>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="rating">⭐⭐⭐⭐⭐</div>
-        <p class="testimonial-text">"Gece geç saatlerde kriz geldiğinde kimseyi arayamıyorsunuz ama AI yardımcısı her an orada. Sakinleştirici müzikler eşliğinde nefes egzersizi yaptırması harika bir özellik."</p>
-        <div class="user-info">
-          <span class="user-name">Zeynep T.</span>
-          <span class="user-badge">App Store • 50+ Gün Sigarasız</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
